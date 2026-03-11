@@ -1,43 +1,44 @@
-# CLAUDE.MD -- Academic Project Development with Claude Code
-
-<!-- HOW TO USE: Replace [BRACKETED PLACEHOLDERS] with your project info.
-     Customize Beamer environments and CSS classes for your theme.
-     Keep this file under ~150 lines — Claude loads it every session.
-     See the guide at docs/workflow-guide.html for full documentation. -->
-
-**Project:** [YOUR PROJECT NAME]
-**Institution:** [YOUR INSTITUTION]
+# CLAUDE.md — Airlines & Data Value
+**Project:** Airlines & Data Value
+**Institution:** Wharton School, University of Pennsylvania
 **Branch:** main
 
 ---
 
 ## Core Principles
 
-- **Plan first** -- enter plan mode before non-trivial tasks; save plans to `quality_reports/plans/`
-- **Verify after** -- compile/render and confirm output at the end of every task
-- **Single source of truth** -- Beamer `.tex` is authoritative; Quarto `.qmd` derives from it
-- **Quality gates** -- nothing ships below 80/100
-- **[LEARN] tags** -- when corrected, save `[LEARN:category] wrong → right` to MEMORY.md
+- **Plan first** — enter plan mode before non-trivial tasks; save plans to `quality_reports/plans/`
+- **Verify after** — compile/run and confirm output at the end of every task
+- **Single source of truth** — `paper/` LaTeX is authoritative; output tables/figures derive from code
+- **Data immutability** — `data/raw/` is never modified; all transformations go to `data/processed/`
+- **Quality gates** — nothing ships below 80/100
+- **[LEARN] tags** — when corrected, save `[LEARN:category] wrong → right` to MEMORY.md
 
 ---
 
 ## Folder Structure
 
 ```
-[YOUR-PROJECT]/
-├── CLAUDE.MD                    # This file
+my-project/
+├── CLAUDE.md                    # This file
 ├── .claude/                     # Rules, skills, agents, hooks
 ├── Bibliography_base.bib        # Centralized bibliography
-├── Figures/                     # Figures and images
-├── Preambles/header.tex         # LaTeX headers
-├── Slides/                      # Beamer .tex files
-├── Quarto/                      # RevealJS .qmd files + theme
-├── docs/                        # GitHub Pages (auto-generated)
-├── scripts/                     # Utility scripts + R code
-├── quality_reports/             # Plans, session logs, merge reports
-├── explorations/                # Research sandbox (see rules)
+├── paper/                       # LaTeX manuscript (.tex, .bbl, .pdf)
+├── data/
+│   ├── raw/                     # Original data — NEVER modified
+│   └── processed/               # Cleaned, analysis-ready datasets
+├── code/
+│   ├── stata/                   # .do files (primary analysis & estimation)
+│   ├── python/                  # .py scripts (data pipeline, cleaning, NLP)
+│   └── R/                       # .R scripts (publication-quality figures)
+├── output/
+│   ├── tables/                  # Auto-generated .tex table fragments
+│   └── figures/                 # Auto-generated .pdf / .png figures
+├── quality_reports/             # Plans, session logs, replication reports
+├── explorations/                # Research sandbox
 ├── templates/                   # Session log, quality report templates
-└── master_supporting_docs/      # Papers and existing slides
+├── master_supporting_docs/      # Related papers, data documentation
+└── Slides/                      # Conference/seminar presentation decks
 ```
 
 ---
@@ -45,16 +46,22 @@
 ## Commands
 
 ```bash
-# LaTeX (3-pass, XeLaTeX only)
-cd Slides && TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode file.tex
-BIBINPUTS=..:$BIBINPUTS bibtex file
-TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode file.tex
-TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode file.tex
+# LaTeX paper (3-pass pdflatex + bibtex)
+cd paper && pdflatex -interaction=nonstopmode manuscript.tex
+bibtex manuscript
+pdflatex -interaction=nonstopmode manuscript.tex
+pdflatex -interaction=nonstopmode manuscript.tex
 
-# Deploy Quarto to GitHub Pages
-./scripts/sync_to_docs.sh LectureN
+# Stata batch run (macOS)
+stata -b do code/stata/main.do
 
-# Quality score
+# Python script
+python code/python/script_name.py
+
+# R figure generation
+Rscript code/R/figures.R
+
+# Quality score (if Quarto slides exist)
 python scripts/quality_score.py Quarto/file.qmd
 ```
 
@@ -65,8 +72,8 @@ python scripts/quality_score.py Quarto/file.qmd
 | Score | Gate | Meaning |
 |-------|------|---------|
 | 80 | Commit | Good enough to save |
-| 90 | PR | Ready for deployment |
-| 95 | Excellence | Aspirational |
+| 90 | PR | Ready for submission draft |
+| 95 | Excellence | Aspirational — referee-ready |
 
 ---
 
@@ -74,63 +81,46 @@ python scripts/quality_score.py Quarto/file.qmd
 
 | Command | What It Does |
 |---------|-------------|
-| `/compile-latex [file]` | 3-pass XeLaTeX + bibtex |
-| `/deploy [LectureN]` | Render Quarto + sync to docs/ |
-| `/extract-tikz [LectureN]` | TikZ → PDF → SVG |
-| `/proofread [file]` | Grammar/typo/overflow review |
-| `/visual-audit [file]` | Slide layout audit |
-| `/pedagogy-review [file]` | Narrative, notation, pacing review |
+| `/compile-latex [file]` | 3-pass pdflatex + bibtex |
+| `/review-paper [file]` | Full manuscript review |
 | `/review-r [file]` | R code quality review |
-| `/qa-quarto [LectureN]` | Adversarial Quarto vs Beamer QA |
-| `/slide-excellence [file]` | Combined multi-agent review |
-| `/translate-to-quarto [file]` | Beamer → Quarto translation |
-| `/validate-bib` | Cross-reference citations |
-| `/devils-advocate` | Challenge slide design |
-| `/create-lecture` | Full lecture creation |
-| `/commit [msg]` | Stage, commit, PR, merge |
+| `/data-analysis [dataset]` | End-to-end analysis workflow |
 | `/lit-review [topic]` | Literature search + synthesis |
 | `/research-ideation [topic]` | Research questions + strategies |
 | `/interview-me [topic]` | Interactive research interview |
-| `/review-paper [file]` | Manuscript review |
-| `/data-analysis [dataset]` | End-to-end R analysis |
+| `/validate-bib` | Cross-reference citations |
+| `/proofread [file]` | Grammar/typo/clarity review |
+| `/commit [msg]` | Stage, commit, PR, merge |
+| `/deep-audit` | Repository-wide consistency audit |
 | `/learn [skill-name]` | Extract discovery into persistent skill |
 | `/context-status` | Show session health + context usage |
-| `/deep-audit` | Repository-wide consistency audit |
+| `/create-lecture` | Conference slide deck (Beamer) |
+| `/compile-latex [file]` | Compile Beamer presentation |
 
 ---
 
-<!-- CUSTOMIZE: Replace the example entries below with your own
-     Beamer environments and Quarto CSS classes. These are examples
-     from the original project — delete them and add yours. -->
+## LaTeX Custom Commands (Paper)
 
-## Beamer Custom Environments
+| Command | Effect | Use Case |
+|---------|--------|----------|
+| *(add as you define them)* | | |
 
-| Environment       | Effect        | Use Case       |
-|-------------------|---------------|----------------|
-| `[your-env]`      | [Description] | [When to use]  |
+## Stata Table Conventions
 
-<!-- Example entries (delete and replace with yours):
-| `keybox` | Gold background box | Key points |
-| `highlightbox` | Gold left-accent box | Highlights |
-| `definitionbox[Title]` | Blue-bordered titled box | Formal definitions |
--->
-
-## Quarto CSS Classes
-
-| Class              | Effect        | Use Case       |
-|--------------------|---------------|----------------|
-| `[.your-class]`    | [Description] | [When to use]  |
-
-<!-- Example entries (delete and replace with yours):
-| `.smaller` | 85% font | Dense content slides |
-| `.positive` | Green bold | Good annotations |
--->
+| Convention | Standard | Notes |
+|------------|----------|-------|
+| Table engine | `esttab` / `estout` | Always output `.tex` fragment to `output/tables/` |
+| Significance stars | `* 0.10 ** 0.05 *** 0.01` | Top-journal standard |
+| Standard errors | Clustered (route or carrier) | Document cluster level in table note |
+| Fixed effects | Absorbed via `reghdfe` | Note FE structure in table header |
 
 ---
 
-## Current Project State
+## Current Paper State
 
-| Lecture | Beamer | Quarto | Key Content |
-|---------|--------|--------|-------------|
-| 1: [Topic] | `Lecture01_Topic.tex` | `Lecture1_Topic.qmd` | [Brief description] |
-| 2: [Topic] | `Lecture02_Topic.tex` | -- | [Brief description] |
+| Section | File | Status | Notes |
+|---------|------|--------|-------|
+| Manuscript | `paper/manuscript.tex` | Not started | Main LaTeX file |
+| Main analysis | `code/stata/main.do` | Not started | Core regressions |
+| Data pipeline | `code/python/build_data.py` | Not started | Raw → processed |
+| Main figures | `code/R/figures.R` | Not started | ggplot2 output |

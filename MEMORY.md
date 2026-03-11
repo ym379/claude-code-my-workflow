@@ -5,6 +5,17 @@ When a mistake is corrected, append a `[LEARN:category]` entry below.
 
 ---
 
+## Project Identity
+
+**Project:** Airlines & Data Value — empirical paper on how airline data investment optimizes revenue
+**Institution:** Wharton School, University of Pennsylvania
+**Stack:** Stata (primary analysis), Python (data pipeline), R (publication figures), LaTeX (manuscript)
+**Structure:** `paper/` (manuscript), `data/raw|processed/`, `code/stata|python|R/`, `output/tables|figures/`
+**Domain reviewer:** Finance/econ journal referee (RFS/JF/AER standard), IO + airline pricing expertise
+**Slide tooling:** Kept in `Slides/` for conference presentations; not primary workflow
+
+---
+
 <!-- Append new entries below. Most recent at bottom. -->
 
 ## Workflow Patterns
