@@ -1,0 +1,774 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+
+\hypertarget{literature-review-data-technology-investment-and-firm-performance}{%
+\section{Literature Review: Data, Technology Investment, and Firm
+Performance}\label{literature-review-data-technology-investment-and-firm-performance}}
+
+\textbf{Date:} 2026-03-11 \textbf{Scope:} Effects of customer data
+access and data/technology investment on firm revenue, profits, and
+productivity --- with emphasis on the airline industry \textbf{Journal
+filter:} AER, QJE, JPE, REStud, Econometrica (economics); JF, JFE, RFS
+(finance); NBER working paper series \textbf{Note on scope:} The journal
+filter is strict. Where a paper appears in a journal outside this list
+(e.g., JEL, AEA P\&P, JME, JIE), this is noted explicitly. Papers in the
+NBER series that have not yet been published in a target journal are
+flagged as working papers.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{overview}{%
+\subsection{Overview}\label{overview}}
+
+Four questions organize the existing literature relevant to this
+project:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Does data and technology investment raise firm performance?}
+  Yes --- in productivity, revenue, and profits --- but the gains are
+  conditional on complementary assets and difficult to identify
+  causally.
+\item
+  \textbf{How does customer data specifically enable higher revenue?}
+  Through personalization and price discrimination: firms that can infer
+  individual willingness to pay charge more to high-type consumers while
+  retaining low-type consumers, raising profits.
+\item
+  \textbf{What does the evidence look like across industries?} The
+  airline industry has the most rigorous academic literature on pricing
+  mechanisms; retail and e-commerce have the richest data on
+  personalization; finance has theoretical models of big data and cost
+  of capital; healthcare has causal estimates of IT adoption.
+\item
+  \textbf{How should one identify these effects?} Causal identification
+  is difficult because technology adoption is endogenous. The literature
+  uses regulatory shocks (GDPR), field experiments, entry/exit of
+  data-intensive competitors, and structural demand models.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{section-1-effects-of-data-and-technology-investment-on-firm-performance}{%
+\subsection{Section 1: Effects of Data and Technology Investment on Firm
+Performance}\label{section-1-effects-of-data-and-technology-investment-on-firm-performance}}
+
+\emph{What do firms gain from data? The evidence on revenue, profits,
+and productivity.}
+
+\hypertarget{consensus-findings}{%
+\subsubsection{Consensus Findings}\label{consensus-findings}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Data and IT investment are associated with higher firm
+  productivity, but returns depend on complementarity with existing
+  assets.} Firms with pre-existing data assets and data-skilled labor
+  earn substantially higher returns from new data technology than firms
+  without these complements. There is no universal ``data dividend'' ---
+  adoption alone is insufficient.
+\item
+  \textbf{Personalized pricing, enabled by customer-level data, raises
+  firm profits substantially.} The gains from moving from a uniform
+  price to an optimized but non-personalized price are large;
+  personalization on top of that adds further gains. The welfare
+  distribution between firms and consumers is ambiguous and depends on
+  the competitive environment.
+\item
+  \textbf{Privacy regulation --- the loss of data access --- reduces
+  firm revenue and productivity, providing a revealed-preference
+  estimate of data's value.} GDPR compliance reduced website traffic and
+  revenues for data-intensive online firms and measurably reduced data
+  storage and computation by EU firms, implying that access to personal
+  data was economically meaningful.
+\item
+  \textbf{Big data disproportionately benefits large firms}, creating a
+  feedback loop: larger firms generate more data, which improves their
+  forecasts and pricing, which makes them more competitive, which
+  generates more data. This mechanism contributes to increasing
+  firm-size concentration in data-intensive industries.
+\end{enumerate}
+
+\hypertarget{key-papers}{%
+\subsubsection{Key Papers}\label{key-papers}}
+
+\begin{itemize}
+\item
+  \textbf{Dubé \& Misra (2023)} --- \emph{JPE} 131(1): 131--189 ---
+  ``Personalized Pricing and Consumer Welfare.'' Randomized controlled
+  pricing field experiment on ZipRecruiter. Unexercised market power
+  raises profit 55\%; moving to an optimized price adds 19\%; full
+  personalization adds 86\% relative to the nonoptimized benchmark. Over
+  60\% of consumers benefit from personalization even as total consumer
+  surplus falls. The granularity of data and consumer surplus are
+  nonmonotonically related. \emph{This is the most directly relevant
+  paper to this project's mechanism.}
+\item
+  \textbf{Bajari, Chernozhukov, Hortaçsu \& Suzuki (2019)} --- \emph{AEA
+  Papers \& Proceedings} 109: 33--37 {[}NBER WP 24334{]} --- ``The
+  Impact of Big Data on Firm Performance: An Empirical Investigation.''
+  Uses proprietary Amazon retail data. Forecast accuracy improves with
+  more time-series data (T) but shows diminishing returns; cross-product
+  pooling (N) shows near-flat gains. Establishes the empirical framework
+  linking data accumulation to operational performance.
+\item
+  \textbf{Farboodi \& Veldkamp (NBER WP 28427)} --- ``A Model of the
+  Data Economy.'' Theoretical model treating data as a production factor
+  that helps firms forecast uncertain outcomes and optimize decisions.
+  Characterizes data feedback loops, depreciation, and equilibrium data
+  prices. Provides the theoretical foundation for thinking about why
+  customer data is valuable to a firm.
+\item
+  \textbf{Goldfarb \& Tucker (2019)} --- \emph{Journal of Economic
+  Literature} 57(1): 3--43 {[}not in target journal list, but the
+  standard survey{]} --- ``Digital Economics.'' Documents that digital
+  technology lowers five key costs: search, replication, transportation,
+  tracking, and verification. The reduction in \emph{tracking costs} is
+  what enables personalization and data-based price discrimination.
+  Canonical reference for contextualizing data investment in the broader
+  digital economy.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{section-2-evidence-by-industry}{%
+\subsection{Section 2: Evidence by
+Industry}\label{section-2-evidence-by-industry}}
+
+\emph{The same mechanism --- data enables better targeting --- operates
+across industries, but the identification strategies and data sources
+differ substantially.}
+
+\hypertarget{a.-airlines}{%
+\subsubsection{2A. Airlines}\label{a.-airlines}}
+
+\textbf{Consensus:} - Fare variation is large and driven by demand-side
+segmentation (business vs.~leisure), not costs. The expected absolute
+fare difference between two passengers on the same route is
+\textasciitilde36\% of the average fare. - Airlines use screening
+devices (advance purchase restrictions, refundability, seat class) to
+separate consumer types. Even coarse behavioral signals --- day of
+purchase, time-to-departure --- generate measurable fare differences. -
+Current pricing captures \textasciitilde77\% of first-best welfare; the
+23\% gap arises primarily from \emph{unobservability of passenger type}.
+This is the welfare cost of imperfect information about customer
+identity --- exactly what customer data acquisition could reduce. -
+Dynamic pricing (prices changing over the booking window) is
+welfare-superior to uniform pricing in aggregate.
+
+\textbf{Key papers:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Borenstein \& Rose (1994)} --- \emph{JPE} 102(4): 653--683 ---
+  Foundational documentation of price dispersion. Establishes the
+  baseline: discrimination, not costs, drives fare variation.
+\item
+  \textbf{Gerardi \& Shapiro (2009)} --- \emph{JPE} 117(1): 1--37 ---
+  Panel FE resolves the Borenstein-Rose puzzle. Competition reduces
+  price dispersion within routes; cross-sectional estimates suffer
+  omitted variable bias.
+\item
+  \textbf{Williams (2022)} --- \emph{Econometrica} 90(2): 831--858 ---
+  Structural model of dynamic pricing. Dynamic pricing welfare-superior
+  to uniform. Decomposes price changes into demand-shock
+  vs.~WTP-variation components.
+\item
+  \textbf{Aryal, Murry \& Williams (2024)} --- \emph{REStud} 91(2):
+  641--689 --- Most complete welfare decomposition. 23\% welfare gap
+  from private information (unobservable type). Welfare would improve if
+  airlines could directly observe passenger type. \emph{Direct
+  motivation for the data value channel.}
+\end{itemize}
+
+\hypertarget{b.-retail-and-e-commerce}{%
+\subsubsection{2B. Retail and
+E-Commerce}\label{b.-retail-and-e-commerce}}
+
+\textbf{Consensus:} - Recommendation systems and personalized targeting
+raise clicks, conversions, and revenue substantially; banning personal
+data from recommendation algorithms sharply reduces sales. - Gains from
+data are largest when consumer heterogeneity is high and when the
+platform controls the transaction interface (captive channel). - Large
+platforms generate more data, which improves their targeting, which
+attracts more consumers and generates more data --- creating a
+competitive moat.
+
+\textbf{Key papers:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Bajari, Chernozhukov, Hortaçsu \& Suzuki (2019)} --- \emph{AEA
+  P\&P} / NBER WP 24334 --- As above. Amazon retail; data accumulation
+  improves forecast accuracy and thereby inventory decisions and
+  revenue.
+\item
+  \textbf{Farboodi, Mihet, Philippon \& Veldkamp (2019)} --- \emph{AEA
+  P\&P} 109: 38--42 {[}NBER WP 25515{]} --- ``Big Data and Firm
+  Dynamics.'' More data → more data investment → larger firm size
+  distribution skewness. Large firms benefit disproportionately from
+  data accumulation.
+\item
+  \textbf{Dubé \& Misra (2023)} --- \emph{JPE} --- As above.
+  Retail/online services context (ZipRecruiter).
+\end{itemize}
+
+\hypertarget{c.-finance-and-banking}{%
+\subsubsection{2C. Finance and Banking}\label{c.-finance-and-banking}}
+
+\textbf{Consensus:} - Big data lowers the cost of capital
+\emph{disproportionately for large firms}: larger firms have more
+financial history and transaction data, so they benefit more from
+data-driven underwriting and valuation. - Fintech lenders using
+alternative data (non-FICO signals) extend credit to previously unserved
+borrowers and predict default more accurately, suggesting traditional
+credit scoring leaves revenue on the table. - The data advantage
+compounds: firms with lower cost of capital grow faster, generating more
+transactions and more data.
+
+\textbf{Key papers:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Begenau, Farboodi \& Veldkamp (2018)} --- NBER WP 24550;
+  published in \emph{Journal of Monetary Economics} {[}not in target
+  journal list{]} --- ``Big Data in Finance and the Growth of Large
+  Firms.'' Data lowers cost of capital disproportionately for large
+  firms; explains part of the rise in firm-size concentration.
+\item
+  ⚠️ \emph{Note:} The finance journal literature (JF, JFE, RFS) on data
+  value and firm performance is nascent. No confirmed top-3 finance
+  paper on data investment → revenue/profits was found in this search.
+  This is itself a gap in the literature --- and one reason a paper in
+  this space could be publishable in a finance journal.
+\end{itemize}
+
+\hypertarget{d.-healthcare}{%
+\subsubsection{2D. Healthcare}\label{d.-healthcare}}
+
+\textbf{Consensus:} - Electronic health records (EHR) and health IT
+improve care quality and patient outcomes, but productivity effects on
+hospitals are mixed and take time to materialize. - The gains from data
+in healthcare come from coordination and decision support, not pricing
+--- a different channel than in commercial settings.
+
+\textbf{Key papers:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Lee, McCullough \& Town (2013)} --- NBER WP 18025 --- ``The
+  Impact of Health Information Technology on Hospital Productivity.''
+  Causal estimates using a value-added production function correcting
+  for endogenous input choices. Health IT inputs grew 210\% over the
+  study period but contributed only \textasciitilde6\% to value-added
+  growth.
+\item
+  \textbf{Agha (2014)} --- \emph{AEJ: Economic Policy} 6(4) {[}not in
+  target journal list{]} --- ``The Effects of Health IT on the Costs and
+  Quality of Medical Care.'' HITECH Act adoption as quasi-experiment.
+  Mixed productivity effects.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{section-3-theoretical-foundations-how-does-data-create-value}{%
+\subsection{Section 3: Theoretical Foundations --- How Does Data Create
+Value?}\label{section-3-theoretical-foundations-how-does-data-create-value}}
+
+\emph{This section is my addition. Understanding the mechanism is
+critical for designing empirical tests and interpreting reduced-form
+results.}
+
+\hypertarget{consensus-findings-1}{%
+\subsubsection{Consensus Findings}\label{consensus-findings-1}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Data's value comes from improving predictions, not from data
+  itself.} Data helps firms forecast random outcomes (demand, default
+  risk, passenger type) more accurately. Better forecasts enable better
+  decisions (pricing, inventory, lending). The value is proportional to
+  the reduction in forecast error.
+\item
+  \textbf{Data exhibits non-rivalry and positive network effects, but
+  also diminishing returns.} Unlike physical capital, data can be
+  replicated at near-zero cost. More data improves forecasts, but with
+  diminishing marginal returns (forecast error falls at approximately
+  1/√N). This creates a U-shaped dynamic: early data investment has high
+  returns; mature firms face diminishing returns but their scale creates
+  a moat.
+\item
+  \textbf{Data is most valuable when consumer heterogeneity is high and
+  the firm can act on information asymmetries.} In markets with
+  heterogeneous willingness to pay (like airlines), better information
+  about individual types enables finer price discrimination. The welfare
+  gain from resolving information asymmetry is bounded by the gap
+  between actual profits and first-best (Aryal et al.~2024: 23\% of
+  first-best welfare).
+\end{enumerate}
+
+\hypertarget{key-papers-1}{%
+\subsubsection{Key Papers}\label{key-papers-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Farboodi \& Veldkamp (NBER WP 28427)} --- ``A Model of the
+  Data Economy.'' Data as a production factor with feedback loops;
+  growth model characterizing equilibrium data accumulation.
+\item
+  \textbf{Dubé \& Misra (2023)} --- \emph{JPE} --- Empirical
+  demonstration of the theory: granularity of data determines both the
+  magnitude of profit gains and the distribution between firm and
+  consumers.
+\item
+  \textbf{Aryal, Murry \& Williams (2024)} --- \emph{REStud} ---
+  Structural quantification of the value of resolving information
+  asymmetry. The 23\% welfare gap is the upper bound on the revenue gain
+  from perfect customer-type identification.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{section-4-identification-strategies-and-data-sources}{%
+\subsection{Section 4: Identification Strategies and Data
+Sources}\label{section-4-identification-strategies-and-data-sources}}
+
+\emph{How has the literature established causal claims? What does each
+approach identify?}
+
+\hypertarget{consensus-findings-2}{%
+\subsubsection{Consensus Findings}\label{consensus-findings-2}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Endogeneity is the central challenge.} Firms that invest more
+  in data technology are systematically different (larger,
+  faster-growing, more data-intensive). OLS regressions of performance
+  on data investment overstate the causal effect. Causal identification
+  requires either (a) exogenous variation in data access, (b) field
+  experiments, or (c) structural models.
+\item
+  \textbf{Privacy regulation shocks are the cleanest natural experiments
+  for identifying data value.} GDPR (May 2018) and similar regulations
+  provide plausibly exogenous variation in data access --- firms serving
+  EU customers faced a sudden, externally imposed cost of data
+  collection. Studies exploiting this shock find meaningful revenue and
+  productivity effects.
+\item
+  \textbf{Field experiments are feasible in pricing contexts but limited
+  to one firm or product.} Dubé \& Misra (2023) is the gold standard:
+  randomly assigned prices across customers. Generalizing these
+  single-firm results to the industry level requires structural
+  assumptions.
+\item
+  \textbf{Panel FE is the baseline for observational studies, but
+  endogeneity of technology adoption remains.} The key lesson from
+  airline pricing (Gerardi-Shapiro): cross-sectional estimates suffer
+  omitted variable bias; within-unit (route, firm) variation is
+  necessary. Instrument for technology investment timing if possible.
+\end{enumerate}
+
+\hypertarget{identification-approaches}{%
+\subsubsection{Identification
+Approaches}\label{identification-approaches}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3167}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2667}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Strategy
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What it identifies
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Key assumption
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Best examples
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Randomized experiment & ATE of personalization/data on profits & Random
+assignment of prices/treatment & Dubé \& Misra (2023) \\
+Regulatory shock (GDPR, CCPA) & Effect of losing data access on revenue
+& Parallel trends; regulation is exogenous to firm-level outcomes &
+Aridor, Che \& Salz (NBER); Goldfarb-Tucker \\
+Entry/exit of data-intensive competitor & Competitive effect of data
+advantage & Entry is orthogonal to route-level demand trends & Gap for
+this project \\
+Technology adoption timing (DiD/event study) & Effect of investment on
+pricing outcomes & Adoption timing uncorrelated with demand shocks &
+\textbf{This paper's proposed design} \\
+Structural demand model & Welfare counterfactuals; markup decomposition
+& Functional form and equilibrium assumptions & Williams (2022); Aryal
+et al.~(2024) \\
+\end{longtable}
+
+\hypertarget{data-sources-relevant-to-this-project}{%
+\subsubsection{Data Sources Relevant to This
+Project}\label{data-sources-relevant-to-this-project}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1538}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2885}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3077}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Source
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What it covers
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Key strength
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Key limitation
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+BTS DB1B & U.S. domestic itinerary-level fares, quarterly, 10\% sample &
+Large; standard in literature; covers all carriers & No purchase date;
+quarterly frequency; transacted (not offered) fares \\
+BTS T-100 & U.S. route-level traffic and revenue, monthly & Monthly
+frequency; complete census & Aggregate; no fare distribution \\
+ATPCO & Filed fares by fare class, real-time & Offered prices; fare
+rules (advance purchase, refundability) & Requires paid access; very
+high volume \\
+Scraped airline websites & Offered prices over booking window &
+Booking-window dynamics & Snapshot; route/airline selection; not
+transacted \\
+Airline 10-K / SEC filings & IT capex, technology investment, loyalty
+program stats & Causal variation candidate; public & Qualitative;
+inconsistent disclosure across carriers and years \\
+Loyalty program investor materials & Enrollment rates, miles sold,
+credit card partnerships & Data asset proxy; publicly disclosed by
+Delta, United, American & Carrier-level; not route-level \\
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{section-5-open-questions-and-this-papers-contribution}{%
+\subsection{Section 5: Open Questions and This Paper's
+Contribution}\label{section-5-open-questions-and-this-papers-contribution}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{The causal effect of data investment on pricing outcomes is
+  unidentified.} All existing causal work in the airline space uses
+  \emph{competition} as the source of variation. No paper uses variation
+  in \emph{data technology investment timing} as the treatment. This is
+  the gap.
+\item
+  \textbf{Customer data acquisition and technology investment are
+  distinct, unstudied channels.} Technology improves the optimization
+  algorithm; customer data improves the inputs. A loyalty program
+  expansion increases the data asset; a revenue management system
+  upgrade improves how that asset is used. The academic literature has
+  not separated these.
+\item
+  \textbf{No top-finance-journal paper exists on data value in the
+  airline industry.} The finance literature has models of big data and
+  cost of capital but nothing on airlines, pricing, or the revenue
+  mechanism. A paper that connects causal pricing evidence to a firm
+  value / return on data investment framing would be well-positioned for
+  JF/JFE/RFS.
+\item
+  \textbf{Welfare vs.~revenue.} The IO literature focuses on welfare.
+  Finance and corporate strategy care about \emph{revenue and profit}.
+  Our paper operates in revenue space --- more tractable with
+  reduced-form methods and directly relevant to valuation.
+\item
+  \textbf{Heterogeneous returns.} Tambe (2014) finds data returns are
+  highest in data-intensive industries. The analog: are data technology
+  returns larger on routes with higher demand heterogeneity (more to
+  gain from finer segmentation)? This cross-sectional heterogeneity
+  would be a testable and novel prediction.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{bibtex-entries}{%
+\subsection{BibTeX Entries}\label{bibtex-entries}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\VariableTok{@article}\NormalTok{\{}\OtherTok{DubeMisra2023}\NormalTok{,}
+  \DataTypeTok{author}\NormalTok{  = \{Dub}\CharTok{\textbackslash{}\textquotesingle{}}\NormalTok{\{e\}, Jean{-}Pierre and Misra, Sanjog\},}
+  \DataTypeTok{title}\NormalTok{   = \{Personalized Pricing and Consumer Welfare\},}
+  \DataTypeTok{journal}\NormalTok{ = \{Journal of Political Economy\},}
+  \DataTypeTok{volume}\NormalTok{  = \{131\},}
+  \DataTypeTok{number}\NormalTok{  = \{1\},}
+  \DataTypeTok{pages}\NormalTok{   = \{131{-}{-}189\},}
+  \DataTypeTok{year}\NormalTok{    = \{2023\}}
+\NormalTok{\}}
+
+\VariableTok{@article}\NormalTok{\{}\OtherTok{BorensteinRose1994}\NormalTok{,}
+  \DataTypeTok{author}\NormalTok{  = \{Borenstein, Severin and Rose, Nancy L.\},}
+  \DataTypeTok{title}\NormalTok{   = \{Competition and Price Dispersion in the \{U.S.\} Airline Industry\},}
+  \DataTypeTok{journal}\NormalTok{ = \{Journal of Political Economy\},}
+  \DataTypeTok{volume}\NormalTok{  = \{102\},}
+  \DataTypeTok{number}\NormalTok{  = \{4\},}
+  \DataTypeTok{pages}\NormalTok{   = \{653{-}{-}683\},}
+  \DataTypeTok{year}\NormalTok{    = \{1994\}}
+\NormalTok{\}}
+
+\VariableTok{@article}\NormalTok{\{}\OtherTok{GerardiShapiro2009}\NormalTok{,}
+  \DataTypeTok{author}\NormalTok{  = \{Gerardi, Kristopher and Shapiro, Adam Hale\},}
+  \DataTypeTok{title}\NormalTok{   = \{Does Competition Reduce Price Dispersion? \{New\} Evidence from the Airline Industry\},}
+  \DataTypeTok{journal}\NormalTok{ = \{Journal of Political Economy\},}
+  \DataTypeTok{volume}\NormalTok{  = \{117\},}
+  \DataTypeTok{number}\NormalTok{  = \{1\},}
+  \DataTypeTok{pages}\NormalTok{   = \{1{-}{-}37\},}
+  \DataTypeTok{year}\NormalTok{    = \{2009\}}
+\NormalTok{\}}
+
+\VariableTok{@article}\NormalTok{\{}\OtherTok{Williams2022}\NormalTok{,}
+  \DataTypeTok{author}\NormalTok{  = \{Williams, Kevin R.\},}
+  \DataTypeTok{title}\NormalTok{   = \{The Welfare Effects of Dynamic Pricing: \{Evidence\} from Airline Markets\},}
+  \DataTypeTok{journal}\NormalTok{ = \{Econometrica\},}
+  \DataTypeTok{volume}\NormalTok{  = \{90\},}
+  \DataTypeTok{number}\NormalTok{  = \{2\},}
+  \DataTypeTok{pages}\NormalTok{   = \{831{-}{-}858\},}
+  \DataTypeTok{year}\NormalTok{    = \{2022\}}
+\NormalTok{\}}
+
+\VariableTok{@article}\NormalTok{\{}\OtherTok{AryalMurryWilliams2024}\NormalTok{,}
+  \DataTypeTok{author}\NormalTok{  = \{Aryal, Gaurab and Murry, Charles and Williams, Jonathan W.\},}
+  \DataTypeTok{title}\NormalTok{   = \{Price Discrimination in International Airline Markets\},}
+  \DataTypeTok{journal}\NormalTok{ = \{Review of Economic Studies\},}
+  \DataTypeTok{volume}\NormalTok{  = \{91\},}
+  \DataTypeTok{number}\NormalTok{  = \{2\},}
+  \DataTypeTok{pages}\NormalTok{   = \{641{-}{-}689\},}
+  \DataTypeTok{year}\NormalTok{    = \{2024\}}
+\NormalTok{\}}
+
+\VariableTok{@article}\NormalTok{\{}\OtherTok{BajariChernozhukovHortacsuSuzuki2019}\NormalTok{,}
+  \DataTypeTok{author}\NormalTok{  = \{Bajari, Patrick and Chernozhukov, Victor and Horta}\CharTok{\textbackslash{}c}\NormalTok{\{c\}su, Ali and Suzuki, Junichi\},}
+  \DataTypeTok{title}\NormalTok{   = \{The Impact of Big Data on Firm Performance: \{An\} Empirical Investigation\},}
+  \DataTypeTok{journal}\NormalTok{ = \{AEA Papers and Proceedings\},}
+  \DataTypeTok{volume}\NormalTok{  = \{109\},}
+  \DataTypeTok{pages}\NormalTok{   = \{33{-}{-}37\},}
+  \DataTypeTok{year}\NormalTok{    = \{2019\},}
+  \DataTypeTok{note}\NormalTok{    = \{Also NBER Working Paper No.\textasciitilde{}24334\}}
+\NormalTok{\}}
+
+\VariableTok{@article}\NormalTok{\{}\OtherTok{FarboodiMihetPhilipponVeldkamp2019}\NormalTok{,}
+  \DataTypeTok{author}\NormalTok{  = \{Farboodi, Maryam and Mihet, Roxana and Philippon, Thomas and Veldkamp, Laura\},}
+  \DataTypeTok{title}\NormalTok{   = \{Big Data and Firm Dynamics\},}
+  \DataTypeTok{journal}\NormalTok{ = \{AEA Papers and Proceedings\},}
+  \DataTypeTok{volume}\NormalTok{  = \{109\},}
+  \DataTypeTok{pages}\NormalTok{   = \{38{-}{-}42\},}
+  \DataTypeTok{year}\NormalTok{    = \{2019\},}
+  \DataTypeTok{note}\NormalTok{    = \{Also NBER Working Paper No.\textasciitilde{}25515\}}
+\NormalTok{\}}
+
+\VariableTok{@techreport}\NormalTok{\{}\OtherTok{FarboodiVeldkamp2021}\NormalTok{,}
+  \DataTypeTok{author}\NormalTok{      = \{Farboodi, Maryam and Veldkamp, Laura\},}
+  \DataTypeTok{title}\NormalTok{       = \{A Model of the Data Economy\},}
+  \DataTypeTok{institution}\NormalTok{ = \{National Bureau of Economic Research\},}
+  \DataTypeTok{number}\NormalTok{      = \{28427\},}
+  \DataTypeTok{year}\NormalTok{        = \{2021\},}
+  \DataTypeTok{type}\NormalTok{        = \{Working Paper\}}
+\NormalTok{\}}
+
+\VariableTok{@techreport}\NormalTok{\{}\OtherTok{BegenauFarboodiVeldkamp2018}\NormalTok{,}
+  \DataTypeTok{author}\NormalTok{      = \{Begenau, Juliane and Farboodi, Maryam and Veldkamp, Laura\},}
+  \DataTypeTok{title}\NormalTok{       = \{Big Data in Finance and the Growth of Large Firms\},}
+  \DataTypeTok{institution}\NormalTok{ = \{National Bureau of Economic Research\},}
+  \DataTypeTok{number}\NormalTok{      = \{24550\},}
+  \DataTypeTok{year}\NormalTok{        = \{2018\},}
+  \DataTypeTok{type}\NormalTok{        = \{Working Paper\},}
+  \DataTypeTok{note}\NormalTok{        = \{Published in Journal of Monetary Economics\}}
+\NormalTok{\}}
+
+\VariableTok{@article}\NormalTok{\{}\OtherTok{GoldfarbTucker2019}\NormalTok{,}
+  \DataTypeTok{author}\NormalTok{  = \{Goldfarb, Avi and Tucker, Catherine\},}
+  \DataTypeTok{title}\NormalTok{   = \{Digital Economics\},}
+  \DataTypeTok{journal}\NormalTok{ = \{Journal of Economic Literature\},}
+  \DataTypeTok{volume}\NormalTok{  = \{57\},}
+  \DataTypeTok{number}\NormalTok{  = \{1\},}
+  \DataTypeTok{pages}\NormalTok{   = \{3{-}{-}43\},}
+  \DataTypeTok{year}\NormalTok{    = \{2019\},}
+  \DataTypeTok{note}\NormalTok{    = \{Not in target journal list; included as standard survey reference\}}
+\NormalTok{\}}
+
+\VariableTok{@techreport}\NormalTok{\{}\OtherTok{LeeMcCulloughTown2013}\NormalTok{,}
+  \DataTypeTok{author}\NormalTok{      = \{Lee, Jinhyung and McCullough, Jeffrey S. and Town, Robert J.\},}
+  \DataTypeTok{institution}\NormalTok{ = \{National Bureau of Economic Research\},}
+  \DataTypeTok{number}\NormalTok{      = \{18025\},}
+  \DataTypeTok{title}\NormalTok{       = \{The Impact of Health Information Technology on Hospital Productivity\},}
+  \DataTypeTok{type}\NormalTok{        = \{Working Paper\},}
+  \DataTypeTok{year}\NormalTok{        = \{2012\}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{verification-notes}{%
+\subsection{Verification Notes}\label{verification-notes}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Dubé \& Misra (2023):} Confirmed JPE 131(1) --- verify exact
+  pages.
+\item
+  \textbf{Aryal et al.~(2024):} Confirmed REStud 91(2) --- verify exact
+  pages.
+\item
+  \textbf{Williams (2022):} Confirmed Econometrica 90(2):831--858.
+\item
+  \textbf{Bajari et al.~(2019):} Confirmed AEA P\&P 109:33--37. Note
+  this is \emph{not} the main AER --- it is the conference proceedings
+  volume, which is published alongside the AER but is lighter in review
+  standards.
+\item
+  \textbf{Farboodi \& Veldkamp NBER 28427:} Working paper as of last
+  search; confirm if published in a target journal.
+\item
+  \textbf{Begenau, Farboodi, Veldkamp:} Published in Journal of Monetary
+  Economics --- \emph{not} JF/JFE/RFS. Flagged accordingly.
+\item
+  \textbf{Goldfarb \& Tucker (2019):} JEL --- not on the target list,
+  but the standard survey for digital economics.
+\item
+  \textbf{No top-3 finance journal (JF/JFE/RFS) papers} on data
+  investment and airline pricing or personalized pricing were
+  identified. This gap is informative for positioning the paper.
+\end{itemize}
+
+\end{document}

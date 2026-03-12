@@ -1,193 +1,195 @@
-# Literature Review: Airline Data Investment, Pricing, and Revenue Optimization
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+# Literature Review: Data, Technology Investment, and Firm Performance
 
 **Date:** 2026-03-11
-**Query:** How airline investment in data technologies and customer data acquisition affects ticket pricing, revenue optimization, and price discrimination — focusing on micro-level ticket pricing evidence
+**Scope:** Effects of customer data access and data/technology investment on firm revenue, profits, and productivity — with emphasis on the airline industry
+**Journal filter:** AER, QJE, JPE, REStud, Econometrica (economics); JF, JFE, RFS (finance); NBER working paper series
+**Note on scope:** The journal filter is strict. Where a paper appears in a journal outside this list (e.g., JEL, AEA P&P, JME, JIE), this is noted explicitly. Papers in the NBER series that have not yet been published in a target journal are flagged as working papers.
 
 ---
 
-## Summary
+## Overview
 
-The economics of airline pricing is one of the richest empirical industrial organization literatures, spanning four decades from Borenstein and Rose's (1994) foundational documentation of price dispersion to the recent structural models of dynamic pricing by Williams (2022) and Aryal, Murry, and Williams (2024). The literature has firmly established that airline price variation is primarily driven by demand-side segmentation (business vs. leisure travelers), intertemporal pricing strategies (advance-purchase dynamics), and competitive market structure — not cost heterogeneity alone.
+Four questions organize the existing literature relevant to this project:
 
-A second, adjacent strand studies how data and IT investment creates firm value. Tambe (2014) and related work document productivity gains from big data investment, though causal identification is difficult due to endogeneity of technology adoption. Critically, **the link between airline-specific data technology investment and micro-level pricing outcomes remains largely unstudied in the academic economics literature** — it exists mainly in industry reports. This gap is the central opportunity for this project.
-
-A key methodological challenge is that the most common data source (BTS DB1B) is a 10% quarterly sample of transacted itineraries, which does not observe the day of purchase. Recent work uses scraped offered-price data from airline websites to study the dynamics of pricing over the booking horizon. Both approaches have advantages relevant to our study design.
-
----
-
-## Key Papers
-
-### 1. Borenstein & Rose (1994) — Competition and Price Dispersion in the U.S. Airline Industry
-- **Main contribution:** First systematic empirical documentation of airline price dispersion; distinguishes cost-based from discrimination-based explanations.
-- **Method:** Cross-sectional OLS/GLS on DB1B ticket-level data; Gini coefficient of price dispersion as outcome.
-- **Key finding:** Expected absolute fare difference between two passengers on the same route is 36% of the average fare. Dispersion *increases* with competition — a puzzling result later reconciled by Gerardi & Shapiro (2009) as cross-sectional omitted variable bias.
-- **Data:** BTS DB1B, 1987
-- **Published:** *Journal of Political Economy*, 102(4), 1994
-- **Relevance:** Foundational benchmark. Establishes that price discrimination — not costs — drives fare variation. Any paper in this space must engage with this result.
+1. **Does data and technology investment raise firm performance?** Yes — in productivity, revenue, and profits — but the gains are conditional on complementary assets and difficult to identify causally.
+2. **How does customer data specifically enable higher revenue?** Through personalization and price discrimination: firms that can infer individual willingness to pay charge more to high-type consumers while retaining low-type consumers, raising profits.
+3. **What does the evidence look like across industries?** The airline industry has the most rigorous academic literature on pricing mechanisms; retail and e-commerce have the richest data on personalization; finance has theoretical models of big data and cost of capital; healthcare has causal estimates of IT adoption.
+4. **How should one identify these effects?** Causal identification is difficult because technology adoption is endogenous. The literature uses regulatory shocks (GDPR), field experiments, entry/exit of data-intensive competitors, and structural demand models.
 
 ---
 
-### 2. Berry, Carnall & Spiller (1996/2006) — Airline Hubs: Costs, Markups and Customer Heterogeneity
-- **Main contribution:** Structural demand-supply model of airline competition with two consumer types (business/leisure) and endogenous hub presence affecting both cost and demand.
-- **Method:** BLP-style discrete-choice demand estimation; instruments for price endogeneity.
-- **Key finding:** Hub airlines charge business travelers a 20% premium; economies of density exist on longer routes only.
-- **Data:** DB1B, route-level
-- **Published:** NBER WP 5561 (1996); published version in *Brookings-Wharton Papers on Urban Affairs* (2006)
-- **Relevance:** Canonical structural framework for airline pricing with heterogeneous consumers. The business/leisure segmentation model is directly relevant to how data technology enables targeting.
+## Section 1: Effects of Data and Technology Investment on Firm Performance
+
+*What do firms gain from data? The evidence on revenue, profits, and productivity.*
+
+### Consensus Findings
+
+1. **Data and IT investment are associated with higher firm productivity, but returns depend on complementarity with existing assets.** Firms with pre-existing data assets and data-skilled labor earn substantially higher returns from new data technology than firms without these complements. There is no universal "data dividend" — adoption alone is insufficient.
+
+2. **Personalized pricing, enabled by customer-level data, raises firm profits substantially.** The gains from moving from a uniform price to an optimized but non-personalized price are large; personalization on top of that adds further gains. The welfare distribution between firms and consumers is ambiguous and depends on the competitive environment.
+
+3. **Privacy regulation — the loss of data access — reduces firm revenue and productivity, providing a revealed-preference estimate of data's value.** GDPR compliance reduced website traffic and revenues for data-intensive online firms and measurably reduced data storage and computation by EU firms, implying that access to personal data was economically meaningful.
+
+4. **Big data disproportionately benefits large firms**, creating a feedback loop: larger firms generate more data, which improves their forecasts and pricing, which makes them more competitive, which generates more data. This mechanism contributes to increasing firm-size concentration in data-intensive industries.
+
+### Key Papers
+
+- **Dubé & Misra (2023)** — *JPE* 131(1): 131–189 — "Personalized Pricing and Consumer Welfare." Randomized controlled pricing field experiment on ZipRecruiter. Unexercised market power raises profit 55%; moving to an optimized price adds 19%; full personalization adds 86% relative to the nonoptimized benchmark. Over 60% of consumers benefit from personalization even as total consumer surplus falls. The granularity of data and consumer surplus are nonmonotonically related. *This is the most directly relevant paper to this project's mechanism.*
+
+- **Bajari, Chernozhukov, Hortaçsu & Suzuki (2019)** — *AEA Papers & Proceedings* 109: 33–37 [NBER WP 24334] — "The Impact of Big Data on Firm Performance: An Empirical Investigation." Uses proprietary Amazon retail data. Forecast accuracy improves with more time-series data (T) but shows diminishing returns; cross-product pooling (N) shows near-flat gains. Establishes the empirical framework linking data accumulation to operational performance.
+
+- **Farboodi & Veldkamp (NBER WP 28427)** — "A Model of the Data Economy." Theoretical model treating data as a production factor that helps firms forecast uncertain outcomes and optimize decisions. Characterizes data feedback loops, depreciation, and equilibrium data prices. Provides the theoretical foundation for thinking about why customer data is valuable to a firm.
+
+- **Goldfarb & Tucker (2019)** — *Journal of Economic Literature* 57(1): 3–43 [not in target journal list, but the standard survey] — "Digital Economics." Documents that digital technology lowers five key costs: search, replication, transportation, tracking, and verification. The reduction in *tracking costs* is what enables personalization and data-based price discrimination. Canonical reference for contextualizing data investment in the broader digital economy.
 
 ---
 
-### 3. Gerardi & Shapiro (2009) — Does Competition Reduce Price Dispersion? New Evidence from the Airline Industry
-- **Main contribution:** Resolves the Borenstein-Rose puzzle using panel data; shows competition *reduces* price dispersion when controlling for time-invariant route characteristics.
-- **Method:** Panel fixed-effects regression; route-level data 1993–2006; HHI and number of competitors as endogenous regressors.
-- **Key finding:** Competition negatively affects price dispersion; cross-sectional estimates suffer omitted variable bias. Effect is larger on routes with heterogeneous demand elasticities.
-- **Data:** DB1B, 1993:Q1–2006:Q3
-- **Published:** *Journal of Political Economy*, 117(1), 2009
-- **Relevance:** Directly relevant methodology (panel FE on route-level DB1B data). Demonstrates that route FE are critical for identification in airline pricing regressions. Our identification strategy should build on this.
+## Section 2: Evidence by Industry
+
+*The same mechanism — data enables better targeting — operates across industries, but the identification strategies and data sources differ substantially.*
+
+### 2A. Airlines
+
+**Consensus:**
+- Fare variation is large and driven by demand-side segmentation (business vs. leisure), not costs. The expected absolute fare difference between two passengers on the same route is ~36% of the average fare.
+- Airlines use screening devices (advance purchase restrictions, refundability, seat class) to separate consumer types. Even coarse behavioral signals — day of purchase, time-to-departure — generate measurable fare differences.
+- Current pricing captures ~77% of first-best welfare; the 23% gap arises primarily from *unobservability of passenger type*. This is the welfare cost of imperfect information about customer identity — exactly what customer data acquisition could reduce.
+- Dynamic pricing (prices changing over the booking window) is welfare-superior to uniform pricing in aggregate.
+
+**Key papers:**
+
+- **Borenstein & Rose (1994)** — *JPE* 102(4): 653–683 — Foundational documentation of price dispersion. Establishes the baseline: discrimination, not costs, drives fare variation.
+- **Gerardi & Shapiro (2009)** — *JPE* 117(1): 1–37 — Panel FE resolves the Borenstein-Rose puzzle. Competition reduces price dispersion within routes; cross-sectional estimates suffer omitted variable bias.
+- **Williams (2022)** — *Econometrica* 90(2): 831–858 — Structural model of dynamic pricing. Dynamic pricing welfare-superior to uniform. Decomposes price changes into demand-shock vs. WTP-variation components.
+- **Aryal, Murry & Williams (2024)** — *REStud* 91(2): 641–689 — Most complete welfare decomposition. 23% welfare gap from private information (unobservable type). Welfare would improve if airlines could directly observe passenger type. *Direct motivation for the data value channel.*
+
+### 2B. Retail and E-Commerce
+
+**Consensus:**
+- Recommendation systems and personalized targeting raise clicks, conversions, and revenue substantially; banning personal data from recommendation algorithms sharply reduces sales.
+- Gains from data are largest when consumer heterogeneity is high and when the platform controls the transaction interface (captive channel).
+- Large platforms generate more data, which improves their targeting, which attracts more consumers and generates more data — creating a competitive moat.
+
+**Key papers:**
+
+- **Bajari, Chernozhukov, Hortaçsu & Suzuki (2019)** — *AEA P&P* / NBER WP 24334 — As above. Amazon retail; data accumulation improves forecast accuracy and thereby inventory decisions and revenue.
+- **Farboodi, Mihet, Philippon & Veldkamp (2019)** — *AEA P&P* 109: 38–42 [NBER WP 25515] — "Big Data and Firm Dynamics." More data → more data investment → larger firm size distribution skewness. Large firms benefit disproportionately from data accumulation.
+- **Dubé & Misra (2023)** — *JPE* — As above. Retail/online services context (ZipRecruiter).
+
+### 2C. Finance and Banking
+
+**Consensus:**
+- Big data lowers the cost of capital *disproportionately for large firms*: larger firms have more financial history and transaction data, so they benefit more from data-driven underwriting and valuation.
+- Fintech lenders using alternative data (non-FICO signals) extend credit to previously unserved borrowers and predict default more accurately, suggesting traditional credit scoring leaves revenue on the table.
+- The data advantage compounds: firms with lower cost of capital grow faster, generating more transactions and more data.
+
+**Key papers:**
+
+- **Begenau, Farboodi & Veldkamp (2018)** — NBER WP 24550; published in *Journal of Monetary Economics* [not in target journal list] — "Big Data in Finance and the Growth of Large Firms." Data lowers cost of capital disproportionately for large firms; explains part of the rise in firm-size concentration.
+- ⚠️ *Note:* The finance journal literature (JF, JFE, RFS) on data value and firm performance is nascent. No confirmed top-3 finance paper on data investment → revenue/profits was found in this search. This is itself a gap in the literature — and one reason a paper in this space could be publishable in a finance journal.
+
+### 2D. Healthcare
+
+**Consensus:**
+- Electronic health records (EHR) and health IT improve care quality and patient outcomes, but productivity effects on hospitals are mixed and take time to materialize.
+- The gains from data in healthcare come from coordination and decision support, not pricing — a different channel than in commercial settings.
+
+**Key papers:**
+
+- **Lee, McCullough & Town (2013)** — NBER WP 18025 — "The Impact of Health Information Technology on Hospital Productivity." Causal estimates using a value-added production function correcting for endogenous input choices. Health IT inputs grew 210% over the study period but contributed only ~6% to value-added growth.
+- **Agha (2014)** — *AEJ: Economic Policy* 6(4) [not in target journal list] — "The Effects of Health IT on the Costs and Quality of Medical Care." HITECH Act adoption as quasi-experiment. Mixed productivity effects.
 
 ---
 
-### 4. Escobari (2012) — Dynamic Pricing, Advance Sales, and Aggregate Demand Learning in Airlines
-- **Main contribution:** First major reduced-form empirical study of how prices evolve over the booking horizon, separating advance-purchase effects from demand-learning responses.
-- **Method:** Dynamic panel regression of fares and seat sales on time-to-departure and load factor; scraped data with temporal variation within a booking window.
-- **Key finding:** Prices increase as inventory falls; prices fall as departure nears (for low-demand flights). Demand shocks have larger price effects than anticipated sales.
-- **Data:** Scraped offered prices from airline websites (not DB1B)
-- **Published:** *Journal of Industrial Economics*, 60(4), 2012
-- **Relevance:** Establishes the empirical regularities our paper must account for. Scraped data methodology is one option for capturing offered (not just transacted) prices.
+## Section 3: Theoretical Foundations — How Does Data Create Value?
+
+*This section is my addition. Understanding the mechanism is critical for designing empirical tests and interpreting reduced-form results.*
+
+### Consensus Findings
+
+1. **Data's value comes from improving predictions, not from data itself.** Data helps firms forecast random outcomes (demand, default risk, passenger type) more accurately. Better forecasts enable better decisions (pricing, inventory, lending). The value is proportional to the reduction in forecast error.
+
+2. **Data exhibits non-rivalry and positive network effects, but also diminishing returns.** Unlike physical capital, data can be replicated at near-zero cost. More data improves forecasts, but with diminishing marginal returns (forecast error falls at approximately 1/√N). This creates a U-shaped dynamic: early data investment has high returns; mature firms face diminishing returns but their scale creates a moat.
+
+3. **Data is most valuable when consumer heterogeneity is high and the firm can act on information asymmetries.** In markets with heterogeneous willingness to pay (like airlines), better information about individual types enables finer price discrimination. The welfare gain from resolving information asymmetry is bounded by the gap between actual profits and first-best (Aryal et al. 2024: 23% of first-best welfare).
+
+### Key Papers
+
+- **Farboodi & Veldkamp (NBER WP 28427)** — "A Model of the Data Economy." Data as a production factor with feedback loops; growth model characterizing equilibrium data accumulation.
+- **Dubé & Misra (2023)** — *JPE* — Empirical demonstration of the theory: granularity of data determines both the magnitude of profit gains and the distribution between firm and consumers.
+- **Aryal, Murry & Williams (2024)** — *REStud* — Structural quantification of the value of resolving information asymmetry. The 23% welfare gap is the upper bound on the revenue gain from perfect customer-type identification.
 
 ---
 
-### 5. Lazarev (2013) — The Welfare Effects of Intertemporal Price Discrimination: Evidence from U.S. Airline Markets
-- **Main contribution:** Full structural model of intertemporal price discrimination on monopoly routes; welfare counterfactuals under uniform pricing, resale, and third-degree discrimination.
-- **Method:** Dynamic structural model with forward-looking consumers and a monopoly airline; estimated on scraped booking data for monopoly routes.
-- **Key finding:** Profit-maximizing intertemporal pricing yields 21% welfare loss relative to social optimum. Intertemporal discrimination captures >90% of third-degree discrimination profits. Ticket resale would increase leisure fares by 54%.
-- **Data:** Scraped booking-level data, monopoly U.S. routes
-- **Published:** Working paper / dissertation (Stanford), 2013; widely cited
-- **Relevance:** Best-practice structural approach. Defines welfare benchmarks that contextualize our reduced-form estimates. Monopoly route focus is a useful identification restriction.
+## Section 4: Identification Strategies and Data Sources
+
+*How has the literature established causal claims? What does each approach identify?*
+
+### Consensus Findings
+
+1. **Endogeneity is the central challenge.** Firms that invest more in data technology are systematically different (larger, faster-growing, more data-intensive). OLS regressions of performance on data investment overstate the causal effect. Causal identification requires either (a) exogenous variation in data access, (b) field experiments, or (c) structural models.
+
+2. **Privacy regulation shocks are the cleanest natural experiments for identifying data value.** GDPR (May 2018) and similar regulations provide plausibly exogenous variation in data access — firms serving EU customers faced a sudden, externally imposed cost of data collection. Studies exploiting this shock find meaningful revenue and productivity effects.
+
+3. **Field experiments are feasible in pricing contexts but limited to one firm or product.** Dubé & Misra (2023) is the gold standard: randomly assigned prices across customers. Generalizing these single-firm results to the industry level requires structural assumptions.
+
+4. **Panel FE is the baseline for observational studies, but endogeneity of technology adoption remains.** The key lesson from airline pricing (Gerardi-Shapiro): cross-sectional estimates suffer omitted variable bias; within-unit (route, firm) variation is necessary. Instrument for technology investment timing if possible.
+
+### Identification Approaches
+
+| Strategy | What it identifies | Key assumption | Best examples |
+|----------|-------------------|----------------|---------------|
+| Randomized experiment | ATE of personalization/data on profits | Random assignment of prices/treatment | Dubé & Misra (2023) |
+| Regulatory shock (GDPR, CCPA) | Effect of losing data access on revenue | Parallel trends; regulation is exogenous to firm-level outcomes | Aridor, Che & Salz (NBER); Goldfarb-Tucker |
+| Entry/exit of data-intensive competitor | Competitive effect of data advantage | Entry is orthogonal to route-level demand trends | Gap for this project |
+| Technology adoption timing (DiD/event study) | Effect of investment on pricing outcomes | Adoption timing uncorrelated with demand shocks | **This paper's proposed design** |
+| Structural demand model | Welfare counterfactuals; markup decomposition | Functional form and equilibrium assumptions | Williams (2022); Aryal et al. (2024) |
+
+### Data Sources Relevant to This Project
+
+| Source | What it covers | Key strength | Key limitation |
+|--------|---------------|-------------|----------------|
+| BTS DB1B | U.S. domestic itinerary-level fares, quarterly, 10% sample | Large; standard in literature; covers all carriers | No purchase date; quarterly frequency; transacted (not offered) fares |
+| BTS T-100 | U.S. route-level traffic and revenue, monthly | Monthly frequency; complete census | Aggregate; no fare distribution |
+| ATPCO | Filed fares by fare class, real-time | Offered prices; fare rules (advance purchase, refundability) | Requires paid access; very high volume |
+| Scraped airline websites | Offered prices over booking window | Booking-window dynamics | Snapshot; route/airline selection; not transacted |
+| Airline 10-K / SEC filings | IT capex, technology investment, loyalty program stats | Causal variation candidate; public | Qualitative; inconsistent disclosure across carriers and years |
+| Loyalty program investor materials | Enrollment rates, miles sold, credit card partnerships | Data asset proxy; publicly disclosed by Delta, United, American | Carrier-level; not route-level |
 
 ---
 
-### 6. Williams (2022) — The Welfare Effects of Dynamic Pricing: Evidence from Airline Markets
-- **Main contribution:** Estimates a model of dynamic airline pricing that separates demand-shock responses from intertemporal willingness-to-pay variation; compares welfare under dynamic vs. uniform pricing.
-- **Method:** Dynamic structural model using flight-level seat availability and fare data; counterfactual analysis.
-- **Key finding:** Dynamic pricing benefits early-buying leisure travelers and harms late-buying business travelers. Aggregate welfare is higher under dynamic pricing than uniform pricing, but the direction depends on what drives price changes (shocks vs. elasticity changes).
-- **Data:** Flight-level data (proprietary + scraped)
-- **Published:** *Econometrica*, 90(2), 2022
-- **Relevance:** State-of-the-art in airline pricing welfare analysis. The decomposition of price changes into "shock-driven" vs. "elasticity-driven" components is directly relevant to assessing what data technology enables.
+## Section 5: Open Questions and This Paper's Contribution
 
----
+1. **The causal effect of data investment on pricing outcomes is unidentified.** All existing causal work in the airline space uses *competition* as the source of variation. No paper uses variation in *data technology investment timing* as the treatment. This is the gap.
 
-### 7. Aryal, Murry & Williams (2024) — Price Discrimination in International Airline Markets
-- **Main contribution:** Multi-dimensional model of inter- and intra-temporal price discrimination using data on passengers' stated travel purpose; estimates efficiency losses from private information vs. dynamic uncertainty.
-- **Method:** Structural model combining within-flight fare variation across cabins and over time with survey data on business/leisure purpose.
-- **Key finding:** Current pricing yields ~77% of first-best welfare. Inefficiency comes mainly from private information about valuations, not demand uncertainty. Welfare would improve if airlines could observe passenger type.
-- **Data:** International routes; unique dataset with passenger purpose (business/leisure) at booking
-- **Published:** *Review of Economic Studies*, 91(2), 2024
-- **Relevance:** Directly relevant to data value: the welfare gap from private information is exactly what customer data acquisition could close. If airlines can infer passenger type from behavioral data, this 23% gap could shrink — that is a mechanism for data value.
+2. **Customer data acquisition and technology investment are distinct, unstudied channels.** Technology improves the optimization algorithm; customer data improves the inputs. A loyalty program expansion increases the data asset; a revenue management system upgrade improves how that asset is used. The academic literature has not separated these.
 
----
+3. **No top-finance-journal paper exists on data value in the airline industry.** The finance literature has models of big data and cost of capital but nothing on airlines, pricing, or the revenue mechanism. A paper that connects causal pricing evidence to a firm value / return on data investment framing would be well-positioned for JF/JFE/RFS.
 
-### 8. Puller & Taylor (2012) — Day-of-Week Purchase Discrimination
-- **Main contribution:** Identifies that airlines charge lower fares on weekends, exploiting the composition of weekend buyers (more leisure, more price-elastic) vs. weekday buyers.
-- **Method:** Regression of fares on day-of-week-of-purchase; variation across routes by business traveler share.
-- **Key finding:** Weekend purchase discount is 7% on mixed business/leisure routes, only 2% on pure leisure routes.
-- **Published:** *International Journal of Industrial Organization*, 2012
-- **Relevance:** A clean natural experiment in behavior-based price discrimination: airlines use *when* you buy (a behavioral signal) to infer your type. Data technology allows richer signals — this paper is the reduced-form analog.
+4. **Welfare vs. revenue.** The IO literature focuses on welfare. Finance and corporate strategy care about *revenue and profit*. Our paper operates in revenue space — more tractable with reduced-form methods and directly relevant to valuation.
 
----
-
-### 9. Tambe (2014) — Big Data Investment, Skills, and Firm Value
-- **Main contribution:** First large-scale study linking firm-level big data investment to productivity growth using LinkedIn skills data to measure Hadoop adoption.
-- **Method:** Panel productivity regression; Hadoop investment as proxy for big data investment; controls for data-intensive industries and local labor market Hadoop concentration.
-- **Key finding:** Firms' Hadoop investments associated with 3% faster productivity growth — but only for firms in data-intensive industries with existing data assets *and* in Hadoop-intensive labor markets.
-- **Data:** LinkedIn skills database + Compustat, 2006–2011
-- **Published:** *Management Science*, 60(6), 2014
-- **Relevance:** Foundational reference for data/IT investment → firm value. Demonstrates complementarities between data assets, data skills, and returns to technology investment. Motivates our focus on airlines that already have large customer data assets (loyalty programs).
-
----
-
-### 10. McAfee & te Velde (2006) — Dynamic Pricing in the Airline Industry
-- **Main contribution:** Theoretical treatment of dynamic pricing mechanisms; explains why prices tend to rise as departure approaches (capacity constraints + late arrivals have higher WTP).
-- **Method:** Theory
-- **Key finding:** Optimal pricing under uncertain demand involves price increases near departure, consistent with observed patterns.
-- **Published:** Chapter in *Handbook on Economics and Information Systems*, 2006
-- **Relevance:** Canonical theoretical reference explaining the intertemporal pricing patterns we observe in data.
-
----
-
-## Thematic Organization
-
-### A. Price Dispersion and Discrimination (Demand-Side Segmentation)
-
-The core finding of this literature is that airline fares vary enormously for the same seat on the same flight, driven primarily by demand-side heterogeneity between business and leisure travelers. Borenstein & Rose (1994) document this dispersion. Berry et al. (1996/2006) model the demand-side mechanism. Gerardi & Shapiro (2009) show that competition disciplines discrimination on routes with homogeneous demand but less so where demand is heterogeneous.
-
-The key mechanism is **screening**: airlines design fare structures (refundability, advance purchase restrictions, Saturday night stays) to induce self-selection by consumer type. Aryal et al. (2024) show that even the optimal screening mechanism leaves 23% of first-best welfare on the table because passenger type is unobservable.
-
-**Connection to our paper:** Customer data acquisition reduces the unobservability of type. An airline that knows you are a business traveler (from loyalty data, booking history, or behavioral signals) can price more precisely. This is the core mechanism we aim to identify.
-
-### B. Dynamic Pricing and the Booking Horizon
-
-Escobari (2012) and Williams (2022) document that prices are not static — they evolve systematically over the booking window in response to remaining inventory and realized demand. Williams (2022) is the definitive structural treatment. The Puller-Taylor (2012) result on day-of-week pricing shows that even coarse behavioral signals (day of purchase) are sufficient for profitable discrimination.
-
-**Connection to our paper:** Richer customer data allows airlines to condition prices on richer signals — not just time-to-departure but customer-specific attributes. The question is whether we can observe investment in data technology and link it to changes in the richness of fare variation.
-
-### C. Data and IT Investment → Firm Value
-
-Tambe (2014) is the most directly relevant academic paper. The broader literature on IT-productivity (Brynjolfsson, Hitt) and data assets (Veldkamp, 2005 on information and business cycles) provides theoretical context.
-
-**Gap:** No paper has studied airline-specific data technology investment and its causal effect on micro-level pricing outcomes (fare variation, revenue per seat-mile, load factor efficiency). The industry literature cites revenue uplifts of 3–10% from AI-driven pricing, but without causal identification.
-
-### D. Methodological Considerations
-
-| Approach | Pros | Cons | Key papers |
-|----------|------|------|-----------|
-| DB1B (transacted fares) | Large, representative, covers all U.S. routes | No purchase timing; 10% sample; quarterly | Borenstein-Rose, Gerardi-Shapiro |
-| Scraped offered prices | Booking-window dynamics; offered not transacted | Selection (only posted prices); single airline/route | Escobari, Lazarev |
-| Proprietary airline data | Complete, individual-level | Access; confidentiality | Aryal et al. |
-| Event study (tech adoption) | Causal variation | Requires data on investment timing | **Gap — our contribution** |
-
----
-
-## Gaps and Opportunities
-
-1. **Causal effect of data technology investment on pricing.** The entire literature treats airline data technology as background context, not as an explanatory variable. Our paper would be the first to study how investment in data-related technologies (revenue management system adoption, AI-pricing rollout, loyalty program expansion) causally affects fare outcomes at the micro level. Identification requires plausibly exogenous variation in the *timing* of technology adoption across carriers or routes.
-
-2. **Customer data acquisition vs. technology investment.** There is a distinction between investing in technology and acquiring customer data (loyalty enrollment, co-branded credit card partnerships, third-party data purchases). The academic literature has not separated these channels. The mechanism may differ: technology improves the *optimization algorithm*, while customer data improves the *inputs*.
-
-3. **Revenue vs. welfare.** Most structural papers compute welfare. Our project focuses on *revenue* — a simpler and more directly measurable outcome. This is more tractable with reduced-form methods and is what firms actually optimize.
-
-4. **Heterogeneity by route/market structure.** Tambe (2014) finds big data returns are larger in data-intensive industries. The analog here is whether data technology returns are larger on routes with more heterogeneous demand (more to gain from finer segmentation) or on routes with more competition (more to gain from better targeting).
-
-5. **Loyalty programs as a data channel.** The academic economics literature has largely neglected the data-asset value of frequent flyer programs. Industry analysis suggests programs like Delta SkyMiles are valued at $26B — more than the airline's equity — partly as data assets. No economics paper has empirically linked loyalty enrollment rates to fare personalization.
-
----
-
-## Suggested Next Steps
-
-1. **Read in full:** Williams (2022, *Econometrica*); Aryal, Murry & Williams (2024, *RestUD*); Gerardi & Shapiro (2009, *JPE*). These three are the most methodologically relevant.
-
-2. **Identify the variation.** The key research design question: what is the source of plausibly exogenous variation in airline data technology investment? Candidates:
-   - Timing of revenue management system upgrades (carrier-specific rollouts)
-   - Loyalty program data partnerships (e.g., credit card co-brand launches/renewals)
-   - Regulatory events (EU GDPR effects on transatlantic data flows)
-   - Market entry/exit of data-intensive carriers on specific routes
-
-3. **Data sources to evaluate:**
-   - BTS DB1B (ticket-level transacted fares, quarterly, 10% sample) — primary
-   - BTS T-100 (segment traffic, monthly, complete) — for load factors
-   - ATPCO (filed fare data, real-time) — for offered prices (requires access)
-   - Airline annual reports / 10-Ks — for technology investment disclosure
-   - Loyalty program enrollment data (often disclosed in investor materials)
-
-4. **Add to bibliography:** Lazarev (2013), Williams (2022), Aryal et al. (2024), Gerardi-Shapiro (2009), Borenstein-Rose (1994), Berry-Carnall-Spiller (2006), Escobari (2012), Tambe (2014), Puller-Taylor (2012).
-
-5. **Search for working papers on:** (a) airline personalized pricing with customer data; (b) revenue management system adoption timing; (c) loyalty program economics and pricing. Check SSRN, NBER, and recent AEA/IO conference programs.
+5. **Heterogeneous returns.** Tambe (2014) finds data returns are highest in data-intensive industries. The analog: are data technology returns larger on routes with higher demand heterogeneity (more to gain from finer segmentation)? This cross-sectional heterogeneity would be a testable and novel prediction.
 
 ---
 
 ## BibTeX Entries
 
 ```bibtex
+@article{DubeMisra2023,
+  author  = {Dub\'{e}, Jean-Pierre and Misra, Sanjog},
+  title   = {Personalized Pricing and Consumer Welfare},
+  journal = {Journal of Political Economy},
+  volume  = {131},
+  number  = {1},
+  pages   = {131--189},
+  year    = {2023}
+}
+
 @article{BorensteinRose1994,
   author  = {Borenstein, Severin and Rose, Nancy L.},
   title   = {Competition and Price Dispersion in the {U.S.} Airline Industry},
@@ -198,15 +200,6 @@ Tambe (2014) is the most directly relevant academic paper. The broader literatur
   year    = {1994}
 }
 
-@techreport{BerryCarnallSpiller1996,
-  author      = {Berry, Steven T. and Carnall, Michael and Spiller, Pablo T.},
-  title       = {Airline Hubs: Costs, Markups and the Implications of Customer Heterogeneity},
-  institution = {National Bureau of Economic Research},
-  number      = {5561},
-  year        = {1996},
-  type        = {Working Paper}
-}
-
 @article{GerardiShapiro2009,
   author  = {Gerardi, Kristopher and Shapiro, Adam Hale},
   title   = {Does Competition Reduce Price Dispersion? {New} Evidence from the Airline Industry},
@@ -215,23 +208,6 @@ Tambe (2014) is the most directly relevant academic paper. The broader literatur
   number  = {1},
   pages   = {1--37},
   year    = {2009}
-}
-
-@article{Escobari2012,
-  author  = {Escobari, Diego},
-  title   = {Dynamic Pricing, Advance Sales, and Aggregate Demand Learning in Airlines},
-  journal = {Journal of Industrial Economics},
-  volume  = {60},
-  number  = {4},
-  pages   = {697--724},
-  year    = {2012}
-}
-
-@unpublished{Lazarev2013,
-  author = {Lazarev, John},
-  title  = {The Welfare Effects of Intertemporal Price Discrimination: {Evidence} from {U.S.} Airline Markets},
-  note   = {Working paper, New York University},
-  year   = {2013}
 }
 
 @article{Williams2022,
@@ -254,41 +230,75 @@ Tambe (2014) is the most directly relevant academic paper. The broader literatur
   year    = {2024}
 }
 
-@article{PullerTaylor2012,
-  author  = {Puller, Steven L. and Taylor, Lorne A.},
-  title   = {Price Discrimination by Day-of-Week of Purchase: {Evidence} from the {U.S.} Airline Industry},
-  journal = {International Journal of Industrial Organization},
-  volume  = {30},
-  number  = {6},
-  pages   = {666--677},
-  year    = {2012}
+@article{BajariChernozhukovHortacsuSuzuki2019,
+  author  = {Bajari, Patrick and Chernozhukov, Victor and Horta\c{c}su, Ali and Suzuki, Junichi},
+  title   = {The Impact of Big Data on Firm Performance: {An} Empirical Investigation},
+  journal = {AEA Papers and Proceedings},
+  volume  = {109},
+  pages   = {33--37},
+  year    = {2019},
+  note    = {Also NBER Working Paper No.~24334}
 }
 
-@article{Tambe2014,
-  author  = {Tambe, Prasanna},
-  title   = {Big Data Investment, Skills, and Firm Value},
-  journal = {Management Science},
-  volume  = {60},
-  number  = {6},
-  pages   = {1452--1469},
-  year    = {2014}
+@article{FarboodiMihetPhilipponVeldkamp2019,
+  author  = {Farboodi, Maryam and Mihet, Roxana and Philippon, Thomas and Veldkamp, Laura},
+  title   = {Big Data and Firm Dynamics},
+  journal = {AEA Papers and Proceedings},
+  volume  = {109},
+  pages   = {38--42},
+  year    = {2019},
+  note    = {Also NBER Working Paper No.~25515}
 }
 
-@incollection{McAfeeTeVelde2006,
-  author    = {McAfee, R. Preston and te Velde, Vera},
-  title     = {Dynamic Pricing in the Airline Industry},
-  booktitle = {Handbook on Economics and Information Systems},
-  editor    = {Hendershott, Terrence J.},
-  publisher = {Elsevier},
-  year      = {2006}
+@techreport{FarboodiVeldkamp2021,
+  author      = {Farboodi, Maryam and Veldkamp, Laura},
+  title       = {A Model of the Data Economy},
+  institution = {National Bureau of Economic Research},
+  number      = {28427},
+  year        = {2021},
+  type        = {Working Paper}
+}
+
+@techreport{BegenauFarboodiVeldkamp2018,
+  author      = {Begenau, Juliane and Farboodi, Maryam and Veldkamp, Laura},
+  title       = {Big Data in Finance and the Growth of Large Firms},
+  institution = {National Bureau of Economic Research},
+  number      = {24550},
+  year        = {2018},
+  type        = {Working Paper},
+  note        = {Published in Journal of Monetary Economics}
+}
+
+@article{GoldfarbTucker2019,
+  author  = {Goldfarb, Avi and Tucker, Catherine},
+  title   = {Digital Economics},
+  journal = {Journal of Economic Literature},
+  volume  = {57},
+  number  = {1},
+  pages   = {3--43},
+  year    = {2019},
+  note    = {Not in target journal list; included as standard survey reference}
+}
+
+@techreport{LeeMcCulloughTown2013,
+  author      = {Lee, Jinhyung and McCullough, Jeffrey S. and Town, Robert J.},
+  institution = {National Bureau of Economic Research},
+  number      = {18025},
+  title       = {The Impact of Health Information Technology on Hospital Productivity},
+  type        = {Working Paper},
+  year        = {2012}
 }
 ```
 
 ---
 
-## Notes and Caveats
+## Verification Notes
 
-- **Verify before citing:** Lazarev (2013) is widely cited but appears primarily as a working paper/dissertation; confirm publication status.
-- **Aryal et al.** published as *Review of Economic Studies* 91(2), 2024 — confirm page numbers from the journal directly.
-- **Williams (2022)** is confirmed in *Econometrica* 90(2):831–858.
-- **This review focuses on the economics literature.** The operations research literature on revenue management (Talluri & van Ryzin 2004 textbook; Gallego & van Ryzin 1994 on dynamic pricing with finite inventory) is also relevant for understanding the mechanism and should be reviewed separately.
+- **Dubé & Misra (2023):** Confirmed JPE 131(1) — verify exact pages.
+- **Aryal et al. (2024):** Confirmed REStud 91(2) — verify exact pages.
+- **Williams (2022):** Confirmed Econometrica 90(2):831–858.
+- **Bajari et al. (2019):** Confirmed AEA P&P 109:33–37. Note this is *not* the main AER — it is the conference proceedings volume, which is published alongside the AER but is lighter in review standards.
+- **Farboodi & Veldkamp NBER 28427:** Working paper as of last search; confirm if published in a target journal.
+- **Begenau, Farboodi, Veldkamp:** Published in Journal of Monetary Economics — *not* JF/JFE/RFS. Flagged accordingly.
+- **Goldfarb & Tucker (2019):** JEL — not on the target list, but the standard survey for digital economics.
+- **No top-3 finance journal (JF/JFE/RFS) papers** on data investment and airline pricing or personalized pricing were identified. This gap is informative for positioning the paper.
